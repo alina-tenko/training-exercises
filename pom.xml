@@ -13,6 +13,7 @@
     <modules>
         <module>hello-world-mvc</module>
         <module>testing-copy-junit</module>
+        <module>guess-the-number</module>
     </modules>
 
     <properties>
