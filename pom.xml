@@ -14,6 +14,7 @@
         <module>hello-world-mvc</module>
         <module>testing-copy-junit</module>
         <module>guess-the-number</module>
+        <module>subscribers-notebook</module>
     </modules>
 
     <properties>
