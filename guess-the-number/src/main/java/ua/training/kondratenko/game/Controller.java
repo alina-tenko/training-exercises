@@ -46,7 +46,7 @@ public class Controller {
         scanner.close();
     }
 
-    private int generateRandomNumber() {
+    public int generateRandomNumber() {
         final int range = 100;
         return (int) (Math.random() * range) + 1;
     }
@@ -56,7 +56,7 @@ public class Controller {
         inputHistory[model.getInputCounter()] = userInput;
     }
 
-    private int inputIntValueWithScanner(Scanner scanner) {
+    public int inputIntValueWithScanner(Scanner scanner) {
 
         view.printMessage(View.INPUT_NUMBER);
 
