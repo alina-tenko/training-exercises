@@ -4,6 +4,10 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Class that represents controller from MVC pattern.
+ * Controls and validates user input and decides how data is displayed.
+ */
 public class Controller {
 
     public static final Pattern NAME_PATTERN = Pattern.compile("[A-Z][a-z]+");
@@ -11,11 +15,18 @@ public class Controller {
     private final View view;
     private final Model model;
 
+    /**
+     * Class constructor.
+     */
     public Controller(View view, Model model) {
         this.view = view;
         this.model = model;
     }
 
+    /**
+     * Method that is responsible for getting an information from user input
+     * and setting it to model.
+     */
     public void notebookFilling() {
 
         view.printMessage(View.ENTER_A_NAME);
@@ -29,6 +40,13 @@ public class Controller {
         scanner.close();
     }
 
+    /**
+     * Method that checks if the given input is correct by pattern
+     *
+     * @param pattern Pattern
+     * @param scanner Scanner
+     * @return String - validated user input
+     */
     public String getCorrectValue(Scanner scanner, Pattern pattern) {
 
         String correctValue = null;

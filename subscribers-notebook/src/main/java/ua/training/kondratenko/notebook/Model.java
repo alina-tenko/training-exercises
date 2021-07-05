@@ -1,5 +1,9 @@
 package ua.training.kondratenko.notebook;
 
+/**
+ * Class that represents model from MVC pattern.
+ * Data holder for name and nickname values.
+ */
 public class Model {
 
     private String name;
