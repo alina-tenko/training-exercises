@@ -27,5 +27,8 @@ hs_err_pid*
 .idea
 *.iml
 
+# Plant UML files
+*.puml
+
 # Project exclude paths
 /hello-world-mvc/target/
