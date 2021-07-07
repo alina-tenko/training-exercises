@@ -1,4 +1,8 @@
-package ua.training.kondratenko.notebook;
+package ua.training.kondratenko.notebook.controller;
+
+import ua.training.kondratenko.notebook.model.Model;
+import ua.training.kondratenko.notebook.view.KeyHolder;
+import ua.training.kondratenko.notebook.view.View;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -26,16 +30,19 @@ public class Controller {
     /**
      * Method that is responsible for getting an information from user input
      * and setting it to model.
+     * @param locale locale. Locale could be ua or eng (default)
      */
-    public void notebookFilling() {
+    public void notebookFilling(String locale) {
 
-        view.printMessage(View.ENTER_A_NAME);
+        view.setLocale(locale);
+
+        view.printLocalizedMessageFor(KeyHolder.KEY_ENTER_A_NAME);
 
         Scanner scanner = new Scanner(System.in);
 
         model.setName(getCorrectValue(scanner, NAME_PATTERN));
 
-        view.printMessage(View.NAME_ACCEPTED + model.getName());
+//        view.printMessage(View.NAME_ACCEPTED + model.getName());
 
         scanner.close();
     }
@@ -63,7 +70,7 @@ public class Controller {
                 break;
             } else {
 
-                view.printMessage(View.WRONG_INPUT);
+//                view.printMessage(View.WRONG_INPUT);
             }
         }
         return correctValue;

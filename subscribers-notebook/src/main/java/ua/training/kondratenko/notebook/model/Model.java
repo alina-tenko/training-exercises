@@ -1,4 +1,4 @@
-package ua.training.kondratenko.notebook;
+package ua.training.kondratenko.notebook.model;
 
 /**
  * Class that represents model from MVC pattern.
