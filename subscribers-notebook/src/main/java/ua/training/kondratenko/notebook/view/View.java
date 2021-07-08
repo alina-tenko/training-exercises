@@ -1,6 +1,5 @@
 package ua.training.kondratenko.notebook.view;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -11,15 +10,12 @@ public class View {
 
     private String locale = "default";
 
-    private final ResourceBundle DEFAULT_BUNDLE = ResourceBundle.getBundle("messages");
-    private final ResourceBundle UA_BUNDLE = ResourceBundle.getBundle(
-            "messages", new Locale("ua", "UA"));
-
     /**
      * Method that prints a message into a console.
+     *
      * @param message message to print into console
      */
-    private void printMessage(String message){
+    private void printMessage(String message) {
         System.out.println(message);
     }
 
@@ -28,7 +24,10 @@ public class View {
     }
 
     public void printLocalizedMessageFor(String messageKey) {
-        final ResourceBundle selectedBundle = locale.equals("ua") ? UA_BUNDLE : DEFAULT_BUNDLE;
+
+        final ResourceBundle selectedBundle = locale.equals("ua") ?
+                LocalisationBundles.UA_BUNDLE :
+                LocalisationBundles.DEFAULT_BUNDLE;
 
         final String localizedMessage = selectedBundle.getString(messageKey);
 
