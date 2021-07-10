@@ -23,11 +23,15 @@ public class View {
         this.locale = locale;
     }
 
+    public String getLocale() {
+        return locale;
+    }
+
     public void printLocalizedMessageFor(String messageKey) {
 
         final ResourceBundle selectedBundle = locale.equals("ua") ?
-                LocalisationBundles.UA_BUNDLE :
-                LocalisationBundles.DEFAULT_BUNDLE;
+                LocalisationBundles.UA_BUNDLE.getBundle() :
+                LocalisationBundles.DEFAULT_BUNDLE.getBundle();
 
         final String localizedMessage = selectedBundle.getString(messageKey);
 

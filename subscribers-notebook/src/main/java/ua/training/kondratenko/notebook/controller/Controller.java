@@ -2,6 +2,7 @@ package ua.training.kondratenko.notebook.controller;
 
 import ua.training.kondratenko.notebook.model.Model;
 import ua.training.kondratenko.notebook.view.KeyHolder;
+import ua.training.kondratenko.notebook.view.RegexHolder;
 import ua.training.kondratenko.notebook.view.View;
 
 import java.util.Scanner;
@@ -13,8 +14,6 @@ import java.util.regex.Pattern;
  * Controls and validates user input and decides how data is displayed.
  */
 public class Controller {
-
-    public static final Pattern NAME_PATTERN = Pattern.compile("[A-Z][a-z]+");
 
     private final View view;
     private final Model model;
@@ -38,13 +37,18 @@ public class Controller {
 
         view.printLocalizedMessageFor(KeyHolder.KEY_ENTER_A_NAME);
 
-        Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
 
-        model.setName(getCorrectValue(scanner, NAME_PATTERN));
+            Pattern regexPattern = RegexHolder.LAT_REGEX_NAME;
 
-//        view.printMessage(View.NAME_ACCEPTED + model.getName());
+            if (view.getLocale().equals("ua")) {
+                regexPattern = RegexHolder.UKR_REGEX_NAME;
+            }
 
-        scanner.close();
+            model.setName(getCorrectValue(scanner, regexPattern));
+
+            view.printLocalizedMessageFor(KeyHolder.KEY_NAME_ACCEPTED);
+        }
     }
 
     /**
@@ -69,8 +73,7 @@ public class Controller {
                 correctValue = inputText;
                 break;
             } else {
-
-//                view.printMessage(View.WRONG_INPUT);
+                view.printLocalizedMessageFor(KeyHolder.KEY_WRONG_INPUT);
             }
         }
         return correctValue;

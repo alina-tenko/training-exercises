@@ -3,11 +3,18 @@ package ua.training.kondratenko.notebook.view;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class LocalisationBundles {
+public enum LocalisationBundles {
 
-    public static final ResourceBundle DEFAULT_BUNDLE = ResourceBundle.getBundle("messages");
+    DEFAULT_BUNDLE(ResourceBundle.getBundle("messages")),
+    UA_BUNDLE(ResourceBundle.getBundle("messages", new Locale("ua")));
 
-    public static final ResourceBundle UA_BUNDLE = ResourceBundle.getBundle(
-            "messages",
-            new Locale("ua", "UA"));
+    private final ResourceBundle bundle;
+
+    LocalisationBundles(ResourceBundle resourceBundle) {
+        this.bundle = resourceBundle;
     }
+
+    public ResourceBundle getBundle() {
+        return bundle;
+    }
+}
