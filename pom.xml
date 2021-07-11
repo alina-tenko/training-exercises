@@ -15,6 +15,7 @@
         <module>testing-copy-junit</module>
         <module>guess-the-number</module>
         <module>subscribers-notebook</module>
+        <module>golovach-exceptions</module>
     </modules>
 
     <properties>
