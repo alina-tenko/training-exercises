@@ -6,6 +6,7 @@ import ua.training.kondratenko.notebook.view.View;
 
 /**
  * Entry point.
+ *
  * @author alina
  */
 public class NotebookApplication {

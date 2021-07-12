@@ -1,5 +1,6 @@
 package ua.training.kondratenko.notebook.controller;
 
+import ua.training.kondratenko.notebook.exceptions.WrongInputException;
 import ua.training.kondratenko.notebook.model.Model;
 import ua.training.kondratenko.notebook.view.KeyHolder;
 import ua.training.kondratenko.notebook.view.RegexHolder;
@@ -35,7 +36,9 @@ public class Controller {
 
         view.setLocale(locale);
 
-        view.printLocalizedMessageFor(KeyHolder.KEY_ENTER_A_NAME);
+        final String welcomeMessage = view.getLocalizedMessageFor(KeyHolder.KEY_ENTER_A_NAME);
+
+        view.printMessage(welcomeMessage);
 
         try (Scanner scanner = new Scanner(System.in)) {
 
@@ -47,7 +50,9 @@ public class Controller {
 
             model.setName(getCorrectValue(scanner, regexPattern));
 
-            view.printLocalizedMessageFor(KeyHolder.KEY_NAME_ACCEPTED);
+            final String nameAccepted = view.getLocalizedMessageFor(KeyHolder.KEY_NAME_ACCEPTED);
+
+            view.printMessage(nameAccepted);
         }
     }
 
@@ -73,7 +78,11 @@ public class Controller {
                 correctValue = inputText;
                 break;
             } else {
-                view.printLocalizedMessageFor(KeyHolder.KEY_WRONG_INPUT);
+                try {
+                    throw new WrongInputException(view.getLocalizedMessageFor(KeyHolder.KEY_WRONG_INPUT));
+                } catch (WrongInputException e) {
+                    System.err.println(e.getMessage());
+                }
             }
         }
         return correctValue;
