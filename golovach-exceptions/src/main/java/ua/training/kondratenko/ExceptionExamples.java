@@ -350,7 +350,7 @@ class App21 {
 }
 //>> 0 2 3
 
-class App {
+class App22 {
     public static void main(String[] args) {
         try {
             throw new RuntimeException();
