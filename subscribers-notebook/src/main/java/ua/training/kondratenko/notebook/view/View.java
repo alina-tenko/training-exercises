@@ -15,7 +15,7 @@ public class View {
      *
      * @param message message to print into console
      */
-    private void printMessage(String message) {
+    public void printMessage(String message) {
         System.out.println(message);
     }
 
@@ -27,14 +27,12 @@ public class View {
         return locale;
     }
 
-    public void printLocalizedMessageFor(String messageKey) {
+    public String getLocalizedMessageFor(String messageKey) {
 
         final ResourceBundle selectedBundle = locale.equals("ua") ?
                 LocalisationBundles.UA_BUNDLE.getBundle() :
                 LocalisationBundles.DEFAULT_BUNDLE.getBundle();
 
-        final String localizedMessage = selectedBundle.getString(messageKey);
-
-        printMessage(localizedMessage);
+        return selectedBundle.getString(messageKey);
     }
 }
