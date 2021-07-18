@@ -13,6 +13,15 @@ public class NotebookApplication {
 
     public static void main(String[] args) {
 
+        final Controller controller = new Controller(new View(), new Model());
+
+        final String locale = getLocale(args);
+
+        controller.notebookFilling(locale);
+    }
+
+    private static String getLocale(String[] args) {
+
         String locale = "default";
 
         if (args.length > 0) {
@@ -21,9 +30,6 @@ public class NotebookApplication {
                 locale = "ua";
             }
         }
-
-        final Controller controller = new Controller(new View(), new Model());
-
-        controller.notebookFilling(locale);
+        return locale;
     }
 }

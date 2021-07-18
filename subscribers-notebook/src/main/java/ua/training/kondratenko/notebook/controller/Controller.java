@@ -28,7 +28,7 @@ public class Controller {
     }
 
     /**
-     * Method that is responsible for getting an information from user input
+     * Method that is responsible for getting information from user input
      * and setting it to model.
      * @param locale locale. Locale could be ua or eng (default)
      */
@@ -42,17 +42,29 @@ public class Controller {
 
         try (Scanner scanner = new Scanner(System.in)) {
 
-            Pattern regexPattern = RegexHolder.LAT_REGEX_NAME;
+            Pattern nameRegex = RegexHolder.LAT_REGEX_NAME;
 
             if (view.getLocale().equals("ua")) {
-                regexPattern = RegexHolder.UKR_REGEX_NAME;
+                nameRegex = RegexHolder.UKR_REGEX_NAME;
             }
 
-            model.setName(getCorrectValue(scanner, regexPattern));
+            model.setName(getCorrectValue(scanner, nameRegex));
 
             final String nameAccepted = view.getLocalizedMessageFor(KeyHolder.KEY_NAME_ACCEPTED);
 
             view.printMessage(nameAccepted);
+
+            final String nicknameMessage = view.getLocalizedMessageFor(KeyHolder.KEY_ENTER_A_NICKNAME);
+
+            view.printMessage(nicknameMessage);
+
+            final Pattern nicknameRegex = RegexHolder.NICKNAME_REGEX;
+
+            model.setNickName(getCorrectValue(scanner, nicknameRegex));
+
+            final String nicknameAccepted = view.getLocalizedMessageFor(KeyHolder.KEY_NICKNAME_ACCEPTED);
+
+            view.printMessage(nicknameAccepted);
         }
     }
 
