@@ -16,6 +16,7 @@
         <module>guess-the-number</module>
         <module>subscribers-notebook</module>
         <module>golovach-exceptions</module>
+        <module>collection-exercises</module>
     </modules>
 
     <properties>
