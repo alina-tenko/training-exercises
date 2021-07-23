@@ -17,6 +17,7 @@
         <module>subscribers-notebook</module>
         <module>golovach-exceptions</module>
         <module>collection-exercises</module>
+        <module>stream-task</module>
     </modules>
 
     <properties>
