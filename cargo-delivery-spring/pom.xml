@@ -14,11 +14,15 @@
     <artifactId>cargo-delivery-spring</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <packaging>jar</packaging>
+
     <name>cargo-delivery-spring</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>16</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
