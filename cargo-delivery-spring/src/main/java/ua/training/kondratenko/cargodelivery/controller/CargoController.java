@@ -6,12 +6,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/cargo")
 public class CargoController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, path = {"/", "/cargo"})
     public String getIndex(Model model) {
         model.addAttribute("word", "Welcome at cargo delivery page!");
         return "index";
     }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/user")
+    public String getUserPage(Model model) {
+        return "user";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/login")
+    public String getLoginPage(Model model) {
+        return "login";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/logout")
+    public String getLogoutPage(Model model) {
+        return "index";
+    }
+
+    @RequestMapping()
+    public String getErrorPage() {
+        return "error";
+    }
+
 }
