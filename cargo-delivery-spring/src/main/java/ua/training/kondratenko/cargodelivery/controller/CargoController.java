@@ -19,6 +19,11 @@ public class CargoController {
         return "user";
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/admin")
+    public String getAdminPage(Model model) {
+        return "admin";
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/login")
     public String getLoginPage(Model model) {
         return "login";

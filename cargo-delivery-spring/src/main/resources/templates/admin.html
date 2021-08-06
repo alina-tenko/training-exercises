@@ -5,7 +5,13 @@
     <title>Admin Page</title>
 </head>
 <body>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<!--<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
+<h2 th:text="#{view.welcome}"></h2>
+<h2 th:text="#{view.admin}"></h2>
+<div>
+    <a th:href="@{'?locale=en'}">EN</a>
+    <a th:href="@{'?locale=ua'}">UA</a>
+</div>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
 </form>

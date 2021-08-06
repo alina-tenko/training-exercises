@@ -19,10 +19,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/cargo").permitAll()
+                .antMatchers("/", "/cargo")
+                .permitAll()
+//                .antMatchers("/admin").hasAnyAuthority("ADMIN")
+//                .antMatchers("/user/**").hasAnyAuthority("USER")
+//                .antMatchers("/guest/**").hasAnyAuthority("GUEST")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+//                .successHandler()
                 .defaultSuccessUrl("/user")
                 .permitAll()
                 .and()

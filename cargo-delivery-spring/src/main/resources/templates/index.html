@@ -4,8 +4,13 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1 th:text="#{view.enter.name}">Welcome!</h1>
+<h1 th:text="#{view.welcome}">Welcome!</h1>
 
-<p>Click <a th:href="@{/user}">here</a> to see a greeting.</p>
+<div>
+    <a th:href="@{'?locale=en'}">EN</a>
+    <a th:href="@{'?locale=ua'}">UA</a>
+</div>
+
+<p>Click <a th:href="@{/login}">here</a> to sign in.</p>
 </body>
 </html>
