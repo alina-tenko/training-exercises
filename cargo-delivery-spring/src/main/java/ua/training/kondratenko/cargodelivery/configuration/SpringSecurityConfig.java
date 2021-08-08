@@ -1,7 +1,6 @@
 package ua.training.kondratenko.cargodelivery.configuration;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,6 +14,12 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final LoginSuccessHandler loginSuccessHandler;
+
+    public SpringSecurityConfig(LoginSuccessHandler loginSuccessHandler) {
+        this.loginSuccessHandler = loginSuccessHandler;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -27,8 +32,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .successHandler()
-                .defaultSuccessUrl("/user")
+                .successHandler(loginSuccessHandler)
+//                .defaultSuccessUrl("/user")
                 .permitAll()
                 .and()
                 .logout()
