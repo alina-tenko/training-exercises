@@ -2,7 +2,6 @@ package ua.training.kondratenko.cargodelivery.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -10,43 +9,43 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Configuration
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
+    private static final String ERROR_REDIRECT = "/login?error=true";
+
+    private static final Map<String, String> ENDPOINTS = new HashMap<>();
+
+    static {
+        ENDPOINTS.put("ADMIN", "/admin");
+        ENDPOINTS.put("USER", "/user");
+    }
+
     @Override
-    protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+    protected void handle(HttpServletRequest request,
+                          HttpServletResponse response,
+                          Authentication authentication)
             throws IOException {
 
-        String targetUrl = determineTargetUrl(authentication);
+        final String targetUrl = determineTargetUrl(authentication);
 
         if (response.isCommitted()) {
             return;
         }
+
         RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
-    protected String determineTargetUrl(Authentication authentication) {
-        String url = "/login?error=true";
+    private String determineTargetUrl(Authentication authentication) {
+        return authentication.getAuthorities()
+                .stream()
+                .map(authority -> authority.getAuthority())
+                .filter(role -> ENDPOINTS.containsKey(role))
+                .findFirst()
+                .orElse(ERROR_REDIRECT);
 
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
-        List<String> roles = new ArrayList<>();
-
-        for (GrantedAuthority grantedAuthority : authorities) {
-            roles.add(grantedAuthority.getAuthority());
-        }
-
-        if (roles.contains("ROLE_ADMIN")) {
-            url = "/admin";
-        }
-        else if (roles.contains("ROLE_USER")) {
-            url = "/user";
-        }
-        return url;
     }
 }
