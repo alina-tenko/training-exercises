@@ -18,6 +18,7 @@
         <module>golovach-exceptions</module>
         <module>collection-exercises</module>
         <module>stream-task</module>
+        <module>cargo-delivery-servlet</module>
     </modules>
 
     <properties>

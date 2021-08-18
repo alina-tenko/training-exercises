@@ -44,8 +44,8 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
                 .stream()
                 .map(authority -> authority.getAuthority())
                 .filter(role -> ENDPOINTS.containsKey(role))
+                .map(role -> ENDPOINTS.get(role))
                 .findFirst()
                 .orElse(ERROR_REDIRECT);
-
     }
 }

@@ -1,5 +1,12 @@
 package ua.training.kondratenko.cargodelivery.entity;
 
-public enum Role {
-    GUEST, USER, ADMIN
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
+    GUEST, USER, ADMIN;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }
